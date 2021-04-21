@@ -1,7 +1,11 @@
+import React from "react";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import tw, { GlobalStyles, css } from "twin.macro";
 import { Global } from "@emotion/react";
+import { QueryClient, QueryClientProvider } from "react-query";
+
+const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -27,7 +31,9 @@ function MyApp({ Component, pageProps }: AppProps) {
           }
         `}
       />
-      <Component {...pageProps} />
+      <QueryClientProvider client={queryClient}>
+        <Component {...pageProps} />
+      </QueryClientProvider>
     </>
   );
 }
