@@ -31,21 +31,25 @@ export default function Home() {
           onChange={setSearch}
         />
 
-        <section>
-          {status === "loading" ? (
-            <Skeleton tw="h-8" count={4} />
-          ) : status === "error" ? (
-            <p>Error!</p>
-          ) : data?.Response === "True" ? (
-            <SearchResultsList tw="mt-3 md:mt-5 lg:mt-7">
-              {data?.Search.map(item => (
-                <SearchResult key={item.imdbID} item={item} />
-              ))}
-            </SearchResultsList>
-          ) : (
-            <p>No items</p>
-          )}
-        </section>
+        {search ? (
+          <section>
+            {status === "loading" || delayedSearch === "" ? (
+              <Skeleton tw="h-8" count={4} />
+            ) : status === "error" ? (
+              <p>Error!</p>
+            ) : data?.Response === "True" ? (
+              <SearchResultsList tw="mt-3 md:mt-5 lg:mt-7">
+                {data?.Search.map(item => (
+                  <SearchResult key={item.imdbID} item={item} />
+                ))}
+              </SearchResultsList>
+            ) : (
+              <p>No items</p>
+            )}
+          </section>
+        ) : (
+          <p>No input yet</p>
+        )}
       </main>
     </div>
   );
