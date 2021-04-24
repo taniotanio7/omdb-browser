@@ -23,7 +23,7 @@ export interface IInputProps {
   value?: string;
   type?: string;
   autoComplete?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (value: string) => void;
 }
 
 const inputStyles = ({ withLabel = false }) => [
@@ -37,6 +37,7 @@ const Input = ({
   name,
   hideLabel = false,
   type = "text",
+  onChange,
   ...props
 }: IInputProps) => {
   return (
@@ -44,6 +45,7 @@ const Input = ({
       <LabelText hidden={hideLabel}>{name}</LabelText>
       <input
         css={inputStyles({ withLabel: !hideLabel })}
+        onChange={e => onChange(e.target.value)}
         type={type}
         {...props}
       />

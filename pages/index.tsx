@@ -3,12 +3,15 @@ import Skeleton from "@components/ui/Skeleton";
 import SearchResult from "@components/items/SearchResult";
 import { useTitlesList } from "@hooks/useTitlesList";
 import Head from "next/head";
-import React from "react";
+import React, { useState } from "react";
 import "twin.macro";
 import SearchResultsList from "@components/items/SearchResultsList";
+import { useDebounce } from "@hooks/useDebounce";
 
 export default function Home() {
-  const { status, data } = useTitlesList({ query: "blade runner" });
+  const [search, setSearch] = useState("");
+  const delayedSearch = useDebounce(search);
+  const { status, data } = useTitlesList({ query: delayedSearch });
 
   return (
     <div>
@@ -20,7 +23,13 @@ export default function Home() {
         <h1 tw="dark:text-white text-4xl font-medium text-center my-3">
           OMDB API Browser
         </h1>
-        <Input hideLabel name="Movie name" tw="max-w-2xl mx-auto" />
+        <Input
+          hideLabel
+          name="Movie name"
+          tw="max-w-2xl mx-auto"
+          value={search}
+          onChange={setSearch}
+        />
 
         <section>
           {status === "loading" ? (
