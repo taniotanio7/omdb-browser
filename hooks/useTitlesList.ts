@@ -9,7 +9,7 @@ export function useTitlesList<TData = OMDBSearchResponse, TError = unknown>(
   queryOptions?: UseQueryOptions<OMDBSearchResponse, TError, TData>,
   axiosOptions?: AxiosRequestConfig
 ) {
-  return useQuery<OMDBSearchResponse, TError, Partial<TData>>(
+  return useQuery<OMDBSearchResponse, TError, TData>(
     [TITLES_LIST_QUERY, params],
     queryFetcher<OMDBSearchParams>(axiosOptions),
     queryOptions
