@@ -8,7 +8,6 @@ export interface ISearchResultProps {
 }
 
 function SearchResult({ item }: ISearchResultProps) {
-  console.log(item.Poster);
   return (
     <li>
       <a tw="p-4 pb-2 md:(p-0 pt-6 pb-3) flex flex-col items-center bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md">
