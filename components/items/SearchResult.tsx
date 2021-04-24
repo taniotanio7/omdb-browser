@@ -11,7 +11,7 @@ function SearchResult({ item }: ISearchResultProps) {
   console.log(item.Poster);
   return (
     <li>
-      <a tw="p-4 pb-2 md:(p-0 pt-6 pb-3) flex flex-col items-center bg-gray-800 rounded-lg shadow-md">
+      <a tw="p-4 pb-2 md:(p-0 pt-6 pb-3) flex flex-col items-center bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md">
         {item.Poster && item.Poster !== "N/A" ? (
           <div tw="h-auto w-auto">
             <Image
@@ -27,10 +27,10 @@ function SearchResult({ item }: ISearchResultProps) {
             <p tw="text-gray-300 text-2xl font-bold">No poster available</p>
           </div>
         )}
-        <span tw="text-orange-500 opacity-80 font-semibold text-2xl text-center">
+        <span tw="text-emerald-900 dark:text-orange-500 opacity-80 font-semibold text-2xl text-center">
           {item.Title}
         </span>
-        <span tw="text-orange-200 font-light opacity-60 lg:mt-1">
+        <span tw="text-gray-900 opacity-60 dark:(text-orange-200 opacity-60) font-light lg:mt-1">
           {item.Year}
         </span>
       </a>

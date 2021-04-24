@@ -17,7 +17,9 @@ export default function Home() {
       </Head>
 
       <main tw="container px-2 mx-auto">
-        <h1 tw="dark:text-white text-4xl text-center my-3">OMDB API Browser</h1>
+        <h1 tw="dark:text-white text-4xl font-medium text-center my-3">
+          OMDB API Browser
+        </h1>
         <Input hideLabel name="Movie name" tw="max-w-2xl mx-auto" />
 
         <section>
