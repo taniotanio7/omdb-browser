@@ -23,7 +23,7 @@ export default function Home() {
       </Head>
 
       <main tw="container px-2 mx-auto">
-        <h1 tw="dark:text-white text-4xl font-medium text-center my-3">
+        <h1 tw="dark:text-white text-3xl md:text-4xl font-medium text-center my-3">
           OMDB API Browser
         </h1>
         <Input
@@ -38,7 +38,12 @@ export default function Home() {
           {search ? (
             <section>
               {status === "loading" || delayedSearch === "" ? (
-                <Skeleton tw="h-8" count={4} />
+                <SearchResultsList tw="mt-3 md:mt-5 lg:mt-7">
+                  <Skeleton
+                    tw="height[400px] min-width[200px] w-full md:min-w-0"
+                    count={6}
+                  />
+                </SearchResultsList>
               ) : status === "error" ? (
                 <p>Error!</p>
               ) : data?.Response === "True" ? (
