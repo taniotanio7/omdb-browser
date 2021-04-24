@@ -3,10 +3,13 @@ import Skeleton from "@components/ui/Skeleton";
 import SearchResult from "@components/items/SearchResult";
 import { useTitlesList } from "@hooks/useTitlesList";
 import Head from "next/head";
+import Image from "next/image";
 import React, { useState } from "react";
 import "twin.macro";
 import SearchResultsList from "@components/items/SearchResultsList";
 import { useDebounce } from "@hooks/useDebounce";
+import HeroImageWrapper from "@components/HeroImageWrapper";
+import ErrorMessage from "@components/ErrorMessage";
 
 export default function Home() {
   const [search, setSearch] = useState("");
@@ -31,25 +34,53 @@ export default function Home() {
           onChange={setSearch}
         />
 
-        {search ? (
-          <section>
-            {status === "loading" || delayedSearch === "" ? (
-              <Skeleton tw="h-8" count={4} />
-            ) : status === "error" ? (
-              <p>Error!</p>
-            ) : data?.Response === "True" ? (
-              <SearchResultsList tw="mt-3 md:mt-5 lg:mt-7">
-                {data?.Search.map(item => (
-                  <SearchResult key={item.imdbID} item={item} />
-                ))}
-              </SearchResultsList>
-            ) : (
-              <p>No items</p>
-            )}
-          </section>
-        ) : (
-          <p>No input yet</p>
-        )}
+        <div tw="mt-2">
+          {search ? (
+            <section>
+              {status === "loading" || delayedSearch === "" ? (
+                <Skeleton tw="h-8" count={4} />
+              ) : status === "error" ? (
+                <p>Error!</p>
+              ) : data?.Response === "True" ? (
+                <SearchResultsList tw="mt-3 md:mt-5 lg:mt-7">
+                  {data?.Search.map(item => (
+                    <SearchResult key={item.imdbID} item={item} />
+                  ))}
+                </SearchResultsList>
+              ) : (
+                <ErrorMessage
+                  tw="md:mt-3 lg:mt-6"
+                  header="No items"
+                  description="No results were found for your search"
+                  image={
+                    <Image
+                      src="/img/cat-list-empty.png"
+                      width={1216}
+                      height={912}
+                      layout="responsive"
+                      quality={95}
+                    />
+                  }
+                />
+              )}
+            </section>
+          ) : (
+            <ErrorMessage
+              tw="md:mt-3 lg:mt-6"
+              header="No input yet"
+              description="Please type name of the movie to search in the OMDB"
+              image={
+                <Image
+                  src="/img/cat-waiting.png"
+                  width={1216}
+                  height={912}
+                  layout="responsive"
+                  quality={95}
+                />
+              }
+            />
+          )}
+        </div>
       </main>
     </div>
   );
