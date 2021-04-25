@@ -1,5 +1,7 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+View the website live on Vercel: [omdb-browser.vercel.app](https://omdb-browser.vercel.app/)
+
 ## Getting Started
 
 First, run the development server:
@@ -76,10 +78,3 @@ and use the `tw` prop inside component
 To write custom styles using SCSS-like syntax use Emotion.
 
 More info in the [**twin.macro docs**](https://github.com/ben-rogerson/twin.macro)
-
-## TODO List
-
-When starting new project:
-
-- [ ] Replace base colors in tailwind.config.js
-- [ ] Generate favicons and put them into `src/_app.tsx`
